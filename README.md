@@ -158,7 +158,7 @@ See [`remediation/secure_code_examples.md`](remediation/secure_code_examples.md)
 
 The complete formatted vulnerability report (including CVSS breakdown, full exploitation narrative, and remediation guidance) is available here:
 
-📄 [`report/vulnerability_report.docx`](report/vulnerability_report.pdf)
+📄 [`report/vulnerability_report.pdf`](report/vulnerability_report.pdf)
 
 
 ---
