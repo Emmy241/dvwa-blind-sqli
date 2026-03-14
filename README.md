@@ -12,7 +12,7 @@
 
 ## Overview
 
-This repository documents a Blind SQL Injection vulnerability identified and exploited during a web application security lab exercise. The target was the DVWA Blind SQLi module running locally via XAMPP.
+This repository documents a Blind SQL Injection vulnerability identified and exploited during a web application security lab exercise. The target was the DVWA Blind SQLi module running locally via VMware/Linux.
 
 An initial attempt at classic SQL injection (authentication bypass) was unsuccessful. Pivoting to the Blind SQLi module, boolean-based injection was confirmed manually, then fully automated using SQLMap — resulting in complete database enumeration and plaintext credential recovery for all five user accounts.
 
@@ -158,26 +158,8 @@ See [`remediation/secure_code_examples.md`](remediation/secure_code_examples.md)
 
 The complete formatted vulnerability report (including CVSS breakdown, full exploitation narrative, and remediation guidance) is available here:
 
-📄 [`report/vulnerability_report.docx`](report/vulnerability_report.docx)
+📄 [`report/vulnerability_report.docx`](report/vulnerability_report.pdf)
 
----
-
-## Repository Structure
-
-```
-dvwa-sqli-assessment/
-├── README.md                        ← this file
-├── report/
-│   └── vulnerability_report.docx   ← formal submission document
-├── evidence/
-│   ├── 01_boolean_response.png      ← Fig 1: boolean SQLi confirmation
-│   ├── 02_sqlmap_dbs.png            ← Fig 2: database enumeration output
-│   └── 03_credential_dump.png      ← Fig 3: credential dump + cracked hashes
-├── payloads/
-│   └── sqli_blind_notes.md         ← manual test inputs and observations
-└── remediation/
-    └── secure_code_examples.md     ← full secure code walkthrough
-```
 
 ---
 
@@ -186,7 +168,7 @@ dvwa-sqli-assessment/
 | Tool | Purpose |
 |---|---|
 | DVWA | Target application (deliberately vulnerable) |
-| XAMPP | Local server stack hosting DVWA |
+| VMware/Linux| Local server stack hosting DVWA |
 | Firefox + Dev Tools | Manual testing and request inspection |
 | Burp Suite Community | HTTP interception and request capture |
 | SQLMap | Automated blind SQLi enumeration and exploitation |
